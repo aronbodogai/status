@@ -17,8 +17,6 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      COMMIT_MESSAGE_FILE: ${{ runner.temp }}/commit-message
     steps:
       - uses: actions/checkout@v5
 
@@ -28,6 +26,8 @@ jobs:
 
       - name: Check every component
         run: node scripts/check.mjs
+        env:
+          COMMIT_MESSAGE_FILE: ${{ runner.temp }}/commit-message
 
       # Only changes are saved, plus a check-in once a day. Each push makes Workers Builds redeploy the page,
       # and the daily commit also stops GitHub from switching this schedule off after 60 quiet days.
@@ -48,3 +48,5 @@ jobs:
             sleep 10
           done
           exit 1
+        env:
+          COMMIT_MESSAGE_FILE: ${{ runner.temp }}/commit-message
