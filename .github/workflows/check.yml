@@ -1,0 +1,50 @@
+name: Check services
+
+on:
+  schedule:
+    # Hourly, at :17 rather than :00, when GitHub delays scheduled runs the most.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      COMMIT_MESSAGE_FILE: ${{ runner.temp }}/commit-message
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Check every component
+        run: node scripts/check.mjs
+
+      # Only changes are saved, plus a check-in once a day. Each push makes Workers Builds redeploy the page,
+      # and the daily commit also stops GitHub from switching this schedule off after 60 quiet days.
+      - name: Commit what changed
+        run: |
+          if [ ! -f "$COMMIT_MESSAGE_FILE" ]; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/monitor.json
+          git commit --file "$COMMIT_MESSAGE_FILE"
+          # Someone may have pushed an incident meanwhile. Only this job writes data/monitor.json, so the
+          # rebase can't conflict.
+          for attempt in 1 2 3; do
+            git pull --rebase --quiet && git push --quiet && exit 0
+            sleep 10
+          done
+          exit 1

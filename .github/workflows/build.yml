@@ -1,0 +1,25 @@
+name: Build
+
+# A quick red or green mark on every push, so a typo in an incident file shows up on the commit in GitHub
+# instead of only as a failed deploy in Cloudflare.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - run: node --test
+
+      - run: node scripts/build.mjs

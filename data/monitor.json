@@ -1,0 +1,52 @@
+{
+  "lastCheck": "2026-11-02T22:05:24.937Z",
+  "components": {
+    "aroncreates-site": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "episodic-site": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "episodic-web": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "episodic-accounts": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "episodic-push": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "episodic-calendar": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "inventory-app": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "inventory-accounts": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    },
+    "inventory-mcp": {
+      "status": "up",
+      "since": "2026-11-02T22:05:24.937Z",
+      "firstCheck": "2026-11-02T22:05:24.937Z"
+    }
+  },
+  "outages": [],
+  "missedDays": []
+}
