@@ -1,9 +1,8 @@
 // Builds the status page into dist/: the overview, history, a page per incident, the RSS feeds, and
 // everything in public/ copied as is. No dependencies, so it runs anywhere Node 22 does.
 //
-//   node scripts/build.mjs                                     the real site
-//   node scripts/build.mjs --incidents test/fixtures/incidents \
-//     --data test/fixtures/monitor.json --now 2026-11-02T21:00:00Z   a preview with made-up history
+//   node scripts/build.mjs        the real site; wrangler deploy and wrangler dev run this first
+//   npm run preview               made-up history from test/fixtures, built into .preview/ and served
 
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';

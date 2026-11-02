@@ -99,21 +99,15 @@ The page links them for feed autodiscovery, so pasting `status.aroncreates.com` 
 
 ```sh
 npm install
-npm test        # unit tests
-npm run dev     # build, then serve dist/ at http://localhost:8787
+npm test          # unit tests
+npm run dev       # build, then serve the real site at http://localhost:8787
+npm run preview   # the same with made-up incidents and outages from test/fixtures
 ```
 
-To see the page with made-up incidents and outages:
-
-```sh
-node scripts/build.mjs --incidents test/fixtures/incidents --data test/fixtures/monitor.json --now 2026-11-02T21:00:00Z
-npx wrangler dev
-```
-
-`npm run build` puts the real site back in `dist/`.
+`wrangler dev` and `wrangler deploy` run the build themselves (`build.command` in `wrangler.jsonc`), so `dist/` is always fresh.
 
 ## Set up
 
 1. Push this repository to GitHub as a public repository, `aronbodogai/status`. Actions minutes are free for public repositories.
-2. In the Cloudflare dashboard, go to Workers & Pages → Create → Import a repository, and pick `aronbodogai/status`. Use `npm run build` as the build command and `npx wrangler deploy` as the deploy command. The `status.aroncreates.com` custom domain comes from `wrangler.jsonc`.
+2. In the Cloudflare dashboard, go to Workers & Pages → Create → Import a repository, and pick `aronbodogai/status`. Leave the build command empty and the deploy command as `npx wrangler deploy`, which builds the site first. The `status.aroncreates.com` custom domain comes from `wrangler.jsonc`.
 3. In the repository's Actions tab, run Check services once with Run workflow, to see that it can check and commit.

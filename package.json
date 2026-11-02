@@ -10,8 +10,9 @@
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
     "test": "node --test",
-    "dev": "node scripts/build.mjs && wrangler dev",
-    "deploy": "node scripts/build.mjs && wrangler deploy"
+    "dev": "wrangler dev",
+    "preview": "node scripts/build.mjs --incidents test/fixtures/incidents --data test/fixtures/monitor.json --now 2026-11-02T21:00:00Z --out .preview && wrangler dev --assets .preview",
+    "deploy": "wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.156.2"

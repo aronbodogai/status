@@ -2,6 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "status",
   "compatibility_date": "2026-10-28",
+  // wrangler deploy and wrangler dev build the site first, so Workers Builds needs no build command.
+  "build": { "command": "node scripts/build.mjs" },
   // No Worker code: Cloudflare serves the built dist/ as static assets, which don't count as Worker requests.
   "assets": {
     "directory": "./dist",
