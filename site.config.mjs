@@ -106,6 +106,33 @@ export default {
         },
       ],
     },
+    {
+      id: 'stocks',
+      name: 'Mystery Stock Market',
+      link: 'https://stocks.aroncreates.com',
+      components: [
+        {
+          id: 'stocks-site',
+          name: 'Website',
+          description: 'stocks.aroncreates.com',
+          check: { url: 'https://stocks.aroncreates.com/', expect: 200 },
+        },
+        {
+          id: 'stocks-game',
+          name: 'Game server',
+          description: 'Rooms and live play',
+          // 200 when the Worker reaches a room Durable Object, 503 when it can't.
+          check: { url: 'https://stocks.aroncreates.com/api/health', expect: 200 },
+        },
+        {
+          id: 'stocks-mcp',
+          name: 'Claude connector',
+          description: 'stocks.aroncreates.com/mcp',
+          // Behind Cloudflare Access, so a check without a login gets a redirect or 401: reachable, not proof it works.
+          check: { url: 'https://stocks.aroncreates.com/mcp' },
+        },
+      ],
+    },
   ],
   /** Services the apps rely on, linked at the bottom of the page. They aren't checked from here. */
   upstream: [

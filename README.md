@@ -1,6 +1,6 @@
 # Status
 
-The status page for aroncreates.com, Episodic and Inventory, at [status.aroncreates.com](https://status.aroncreates.com). It shows the current status, 90 days of uptime per component, the history of incidents and outages, and RSS feeds to subscribe to.
+The status page for aroncreates.com, Episodic, Inventory and Mystery Stock Market, at [status.aroncreates.com](https://status.aroncreates.com). It shows the current status, 90 days of uptime per component, the history of incidents and outages, and RSS feeds to subscribe to.
 
 It's a static site: nothing runs when someone opens it.
 
@@ -91,7 +91,7 @@ If the check marks something down that wasn't, wait until it's back up, then del
 ## Feeds
 
 - Everything: `https://status.aroncreates.com/feed.xml`
-- One product: `https://status.aroncreates.com/feed/aroncreates.xml`, `…/feed/episodic.xml`, `…/feed/inventory.xml`
+- One product: `https://status.aroncreates.com/feed/aroncreates.xml`, `…/feed/episodic.xml`, `…/feed/inventory.xml`, `…/feed/stocks.xml`
 
 The page links them for feed autodiscovery, so pasting `status.aroncreates.com` into a reader finds them.
 

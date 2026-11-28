@@ -21,6 +21,7 @@ test('the real config renders the fixture history into every page', async () => 
     'feed/aroncreates.xml',
     'feed/episodic.xml',
     'feed/inventory.xml',
+    'feed/stocks.xml',
     'history/index.html',
     'incidents/2026-09-03-slow-emails/index.html',
     'incidents/2026-10-14-inventory-sync/index.html',
@@ -34,7 +35,7 @@ test('the real config renders the fixture history into every page', async () => 
   assert.match(index, /Episodic Web reminders isn(?:'|&#39;)t responding/);
   assert.match(index, /<a href="\/incidents\/2026-11-02-calendar-late\/">Calendar feeds update late<\/a>/);
   assert.match(index, /<link rel="alternate" type="application\/rss\+xml" title="Episodic" href="https:\/\/status.aroncreates.com\/feed\/episodic.xml">/);
-  assert.equal((index.match(/class="bar /g) ?? []).length, config.days * 9);
+  assert.equal((index.match(/class="bar /g) ?? []).length, config.days * config.groups.flatMap((group) => group.components).length);
 
   const historyPage = files.get('history/index.html');
   assert.match(historyPage, /aroncreates.com Website wasn(?:'|&#39;)t responding/);
